@@ -1,7 +1,7 @@
 package com.maonamassa.contractsystem;
 
 //essa classe detalha como deve funcionar a implementação das classes Contract, LaTeXToPDFConverter e NumeroPorExtenso
-public class App {
+public class AppContract {
     public static void main(String[] args) {
         
         //aqui é criado um contrato com as informações do contratante, do profissional,
@@ -15,6 +15,7 @@ public class App {
         "construção de uma casinha amarela de cachorro de dois andares para o cachorro Toddy, no quintal da casa de Lucas", 
         "1234.56");
 
+        //aqui é criado um objeto da classe LaTeXToPDFConverter
         LaTeXToPDFConverter converter = new LaTeXToPDFConverter();
 
         converter.convertToPDF(contrato);
