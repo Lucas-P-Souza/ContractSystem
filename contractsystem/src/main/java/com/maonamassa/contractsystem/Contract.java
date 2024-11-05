@@ -1,7 +1,11 @@
 package com.maonamassa.contractsystem;
 
-public class ContractSystem {
+//essa classe representa um contrato entre um contratante e um profissional
+//ela contém informações sobre o contratante, o profissional, a descrição detalhada do serviço e o valor combinado
+//ela é usada para gerar um contrato em PDF
+public class Contract {
 
+    //variáveis que armazenam as informações do contrato
     private String nomeContratante;
     private String cpfCnpjContratante;
     private String enderecoContratante;
@@ -11,7 +15,9 @@ public class ContractSystem {
     private String descricaoDetalhada;
     private String valorCombinado;
 
-    public ContractSystem(String nomeContratante, String cpfCnpjContratante, String enderecoContratante,
+    //construtor que recebe todas as informações do contrato
+    //é ele que deve ser usado para criar um objeto do contrato
+    public Contract(String nomeContratante, String cpfCnpjContratante, String enderecoContratante,
                           String nomeProfissional, String cpfCnpjProfissional, String enderecoProfissional,
                           String descricaoDetalhada, String valorCombinado) {
         this.nomeContratante = nomeContratante;
@@ -24,7 +30,8 @@ public class ContractSystem {
         this.valorCombinado = valorCombinado;
     }
 
-    //gets and sets
+    //gets para acessar as informações do contrato
+    //os sets não são necessários, pois as informações do contrato são passadas no construtor e não devem ser alteradas
     public String getNomeContratante() {
         return nomeContratante;
     }
@@ -55,38 +62,6 @@ public class ContractSystem {
 
     public String getValorCombinado() {
         return valorCombinado;
-    }
-
-    public void setNomeContratante(String nomeContratante) {
-        this.nomeContratante = nomeContratante;
-    }
-
-    public void setCpfCnpjContratante(String cpfCnpjContratante) {
-        this.cpfCnpjContratante = cpfCnpjContratante;
-    }
-
-    public void setEnderecoContratante(String enderecoContratante) {
-        this.enderecoContratante = enderecoContratante;
-    }
-
-    public void setNomeProfissional(String nomeProfissional) {
-        this.nomeProfissional = nomeProfissional;
-    }
-
-    public void setCpfCnpjProfissional(String cpfCnpjProfissional) {
-        this.cpfCnpjProfissional = cpfCnpjProfissional;
-    }
-
-    public void setEnderecoProfissional(String enderecoProfissional) {
-        this.enderecoProfissional = enderecoProfissional;
-    }
-
-    public void setDescricaoDetalhada(String descricaoDetalhada) {
-        this.descricaoDetalhada = descricaoDetalhada;
-    }
-
-    public void setValorCombinado(String valorCombinado) {
-        this.valorCombinado = valorCombinado;
     }
 
 }

@@ -1,5 +1,12 @@
 package com.maonamassa.contractsystem;
 
+//importa os itens necessários para a classe
+//BufferedReader é uma classe que lê o texto de um fluxo de entrada de caracteres, armazenando em buffer para fornecer uma leitura eficiente de caracteres, arrays e linhas
+//FileOutputStream é uma classe que grava bytes em um arquivo
+//IOException é uma exceção que indica que ocorreu uma exceção de E/S de algum tipo
+//InputStreamReader é uma classe que lê bytes e os decodifica em caracteres usando um conjunto de caracteres
+//OutputStreamWriter é uma classe que grava caracteres em um fluxo de saída de bytes
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,14 +14,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+//essa classe gerencia a conversão de um arquivo LaTeX para um arquivo PDF
+//ela é resposável por gerar os contratos em formato .pdf
+//por motivos de problemas na implementação, o código em latex foi inserido diretamente na classe
 public class LaTeXToPDFConverter {
 
     private String valor_inteiro;
     private String valor_decimal;
 
-    public void convertToPDF(String nomeContratante, String cpfCnpjContratante, String enderecoContratante,
-                             String nomeProfissional, String cpfCnpjProfissional, String enderecoProfissional,
-                             String descricaoDetalhada, String valorCombinado) {
+    public void convertToPDF(Contract contrato) {
 
         // Obtém o diretório atual da classe
         String currentDir = System.getProperty("user.dir");
@@ -143,18 +151,18 @@ public class LaTeXToPDFConverter {
 
 
         // Substitui os placeholders pelas variáveis
-        NumeroPorExtenso numero = new NumeroPorExtenso(valorCombinado);
+        NumeroPorExtenso numero = new NumeroPorExtenso(contrato.getValorCombinado());
         valor_inteiro = numero.getParteInteiraExtenso();
         valor_decimal = numero.getParteDecimalExtenso();
 
-        content = content.replace("(Nome da parte contratante)", nomeContratante)
-                         .replace("(numero do CPF/CNPJ)", cpfCnpjContratante)
-                         .replace("(endereco)", enderecoContratante)
-                         .replace("(Nome da parte contratada)", nomeProfissional)
-                         .replace("(numero do CPF/CNPJ)", cpfCnpjProfissional)
-                         .replace("(endereco)", enderecoProfissional)
-                         .replace("(descrever detalhadamente os serviços a serem prestados)", descricaoDetalhada)
-                         .replace("valor_cheio", valorCombinado)
+        content = content.replace("(Nome da parte contratante)", contrato.getNomeContratante())
+                         .replace("(numero do CPF/CNPJ)", contrato.getCpfCnpjContratante())
+                         .replace("(endereco)", contrato.getEnderecoContratante())
+                         .replace("(Nome da parte contratada)", contrato.getNomeProfissional())
+                         .replace("(numero do CPF/CNPJ)", contrato.getCpfCnpjProfissional())
+                         .replace("(endereco)", contrato.getEnderecoProfissional())
+                         .replace("(descrever detalhadamente os serviços a serem prestados)", contrato.getDescricaoDetalhada())
+                         .replace("valor_cheio", contrato.getValorCombinado())
                          .replace("valor_inteiro", valor_inteiro)
                          .replace("valor_decimal", valor_decimal);
 

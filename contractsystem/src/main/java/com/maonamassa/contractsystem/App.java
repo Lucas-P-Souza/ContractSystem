@@ -1,9 +1,12 @@
 package com.maonamassa.contractsystem;
 
+//essa classe detalha como deve funcionar a implementação das classes Contract, LaTeXToPDFConverter e NumeroPorExtenso
 public class App {
     public static void main(String[] args) {
         
-        ContractSystem contract = new ContractSystem("Lucas", 
+        //aqui é criado um contrato com as informações do contratante, do profissional,
+        //a descrição detalhada do serviço e o valor combinado
+        Contract contrato = new Contract("Lucas", 
         "123.456.789-00", 
         "Itajuba", 
         "Julia", 
@@ -14,14 +17,7 @@ public class App {
 
         LaTeXToPDFConverter converter = new LaTeXToPDFConverter();
 
-        converter.convertToPDF(contract.getNomeContratante(),
-                              contract.getCpfCnpjContratante(),
-                              contract.getEnderecoContratante(),
-                              contract.getNomeProfissional(),
-                              contract.getCpfCnpjProfissional(),
-                              contract.getEnderecoProfissional(),
-                              contract.getDescricaoDetalhada(),
-                              contract.getValorCombinado());
+        converter.convertToPDF(contrato);
 
     }
 }
