@@ -167,7 +167,7 @@ public class LaTeXToPDFConverter {
                          .replace("valor_decimal", valor_decimal);
 
         // Cria um novo arquivo .tex modificado
-        String modifiedFileName = currentDir + File.separator + "contrato_final.tex";
+        String modifiedFileName = currentDir + File.separator + contrato.getId()+ "contrato_final.tex";
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(modifiedFileName), "UTF-8")) {
             writer.write(content);
         } catch (IOException e) {

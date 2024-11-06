@@ -1,6 +1,8 @@
 package com.maonamassa.contractsystem;
 
 import java.time.LocalDate;
+import java.util.UUID;
+
 import com.maonamassa.projectsystem.Project;
 import com.maonamassa.projectsystem.TipoProjeto;
 
@@ -11,6 +13,7 @@ public class Contract {
 
     //variáveis que armazenam as informações do contrato
     Project projeto;
+    String id;
     private String nomeContratante;
     private String cpfCnpjContratante;
     private String enderecoContratante;
@@ -27,30 +30,41 @@ public class Contract {
     public Contract(Project projeto) {
         this.projeto = projeto;
         if(projeto.getTipoProjeto() == TipoProjeto.OFERTA_DE_SERVICO) {
-            this.nomeContratante = projeto.oferta.getNomeContratante();
-            this.cpfCnpjContratante = projeto.oferta.getCpfCnpjContratante();
-            this.enderecoContratante = projeto.oferta.getEnderecoContratante();
-            this.nomeProfissional = projeto.oferta.getNomeProfissional();
-            this.cpfCnpjProfissional = projeto.oferta.getCpfCnpjProfissional();
-            this.enderecoProfissional = projeto.oferta.getEnderecoProfissional();
-            this.descricaoDetalhada = projeto.oferta.getDescricaoDetalhada();
-            this.valorCombinado = projeto.oferta.getValorCombinado();
-            this.dataInicio = projeto.oferta.getDataInicio();
-            this.dataFim = projeto.oferta.getDataFim();
+            this.id = gerarUUID();
+            this.nomeContratante = projeto.getOferta().getContratante().getNome();
+            this.cpfCnpjContratante = projeto.getOferta().getContratante().getCpfcnpj();
+            this.enderecoContratante = projeto.getOferta().getContratante().getEndereco();
+            this.nomeProfissional = projeto.getOferta().getProfissional().getNome();
+            this.cpfCnpjProfissional = projeto.getOferta().getProfissional().getCpfcnpj();
+            this.enderecoProfissional = projeto.getOferta().getProfissional().getEndereco();
+            this.descricaoDetalhada = projeto.getDescricaoProjeto();
+            this.valorCombinado = projeto.getOferta().getValor().toString();
+            this.dataInicio = projeto.getDataInicio();
+            this.dataFim = projeto.getDataFim();
         }
         else if(projeto.getTipoProjeto() == TipoProjeto.DEMANDA_DE_SERVICO) {
-            this.nomeContratante = projeto.demanda.getNomeContratante();
-            this.cpfCnpjContratante = projeto.demanda.getCpfCnpjContratante();
-            this.enderecoContratante = projeto.demanda.getEnderecoContratante();
-            this.nomeProfissional = projeto.demanda.getNomeProfissional();
-            this.cpfCnpjProfissional = projeto.demanda.getCpfCnpjProfissional();
-            this.enderecoProfissional = projeto.demanda.getEnderecoProfissional();
-            this.descricaoDetalhada = projeto.demanda.getDescricaoDetalhada();
-            this.valorCombinado = projeto.demanda.getValorCombinado();
-            this.dataInicio = projeto.demanda.getDataInicio();
-            this.dataFim = projeto.demanda.getDataFim();
+            this.id = gerarUUID();
+            this.nomeContratante = projeto.getDemanda().getContratante().getNome();
+            this.cpfCnpjContratante = projeto.getDemanda().getContratante().getCpfcnpj();
+            this.enderecoContratante = projeto.getDemanda().getContratante().getEndereco();
+            this.nomeProfissional = projeto.getDemanda().getProfissional().getNome();
+            this.cpfCnpjProfissional = projeto.getDemanda().getProfissional().getCpfcnpj();
+            this.enderecoProfissional = projeto.getDemanda().getProfissional().getEndereco();
+            this.descricaoDetalhada = projeto.getDescricaoProjeto();
+            this.valorCombinado = projeto.getValorCombinado().toString();
+            this.dataInicio = projeto.getDataInicio();
+            this.dataFim = projeto.getDataFim();
         }
         
+    }
+
+    public static String gerarUUID() {
+      return UUID.randomUUID().toString();
+    }
+
+    //aqui setamos o valor que não foi combinado na demanda
+    public void setValorCombinado(String valorCombinado) {
+        this.valorCombinado = valorCombinado;
     }
 
     //gets para acessar as informações do contrato
@@ -85,6 +99,22 @@ public class Contract {
 
     public String getValorCombinado() {
         return valorCombinado;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public Project getProjeto() {
+        return projeto;
+    }
+
+    public String getId() {
+        return id;
     }
 
 }

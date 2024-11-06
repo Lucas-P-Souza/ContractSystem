@@ -1,10 +1,10 @@
 package com.maonamassa.projectsystem;
 
-import com.maonamassa.propostas.Demanda;
-import com.maonamassa.propostas.Oferta;
-
 import java.time.LocalDate;
 import java.util.UUID;
+
+import com.maonamassa.proposalsystem.Demanda;
+import com.maonamassa.proposalsystem.Oferta;
 
 /**
  * Essa classe é responsável por criar o objeto projeto, que é composto por um nome, descrição, data de início, 
@@ -84,6 +84,14 @@ public class Project {
         return tipoProjeto;
     }
 
+    public Oferta getOferta() {
+        return oferta;
+    }
+
+    public Demanda getDemanda() {
+        return demanda;
+    }
+
     public void setNomeProjeto(String nomeProjeto) {
         this.nomeProjeto = nomeProjeto;
     }
@@ -111,5 +119,13 @@ public class Project {
     public void setTipoProjeto(TipoProjeto tipoProjeto) {
         this.tipoProjeto = tipoProjeto;
     } 
+
+    public void setOferta(Oferta oferta) {
+        this.oferta = oferta;
+    }
+
+    public void setDemanda(Demanda demanda) {
+        this.demanda = demanda;
+    }
 
 }
