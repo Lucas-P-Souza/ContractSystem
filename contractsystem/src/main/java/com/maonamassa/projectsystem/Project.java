@@ -1,5 +1,8 @@
 package com.maonamassa.projectsystem;
 
+import com.maonamassa.propostas.Demanda;
+import com.maonamassa.propostas.Oferta;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -14,6 +17,10 @@ import java.util.UUID;
 //classe responsável por criar o objeto projeto
 public class Project {
 
+    Oferta oferta;
+
+    Demanda demanda;
+    
     String id;
     
     public static String gerarUUID() {
@@ -27,10 +34,21 @@ public class Project {
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private String valorCombinado;
+    private TipoProjeto tipoProjeto;
 
     //construtor
-    public Project() {
+    public Project(Oferta oferta) {
         this.id = gerarUUID();
+        this.oferta = oferta;
+        this.demanda = null;
+        this.tipoProjeto = TipoProjeto.OFERTA_DE_SERVICO;
+    }
+
+    public Project(Demanda demanda) {
+        this.id = gerarUUID();
+        this.demanda = demanda;
+        this.oferta = null;
+        this.tipoProjeto = TipoProjeto.DEMANDA_DE_SERVICO;
     }
 
     // Gets e Sets dos atributos
@@ -62,6 +80,10 @@ public class Project {
         return valorCombinado;
     }
 
+    public TipoProjeto getTipoProjeto() {
+        return tipoProjeto;
+    }
+
     public void setNomeProjeto(String nomeProjeto) {
         this.nomeProjeto = nomeProjeto;
     }
@@ -84,6 +106,10 @@ public class Project {
 
     public void setValorCombinado(String valorCombinado) {
         this.valorCombinado = valorCombinado;
-    }   
+    }
+    
+    public void setTipoProjeto(TipoProjeto tipoProjeto) {
+        this.tipoProjeto = tipoProjeto;
+    } 
 
 }

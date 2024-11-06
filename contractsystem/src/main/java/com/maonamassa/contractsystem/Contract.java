@@ -2,6 +2,7 @@ package com.maonamassa.contractsystem;
 
 import java.time.LocalDate;
 import com.maonamassa.projectsystem.Project;
+import com.maonamassa.projectsystem.TipoProjeto;
 
 //essa classe representa um contrato entre um contratante e um profissional
 //ela contém informações sobre o contratante, o profissional, a descrição detalhada do serviço e o valor combinado
@@ -25,14 +26,31 @@ public class Contract {
     //é ele que deve ser usado para criar um objeto do contrato
     public Contract(Project projeto) {
         this.projeto = projeto;
-        this.nomeContratante = projeto.getNomeContratante();
-        this.cpfCnpjContratante = projeto.getCpfCnpjContratante();
-        this.enderecoContratante = projeto.getEnderecoContratante();
-        this.nomeProfissional = projeto.getNomeProfissional();
-        this.cpfCnpjProfissional = projeto.getCpfCnpjProfissional();
-        this.enderecoProfissional = projeto.getEnderecoProfissional();
-        this.descricaoDetalhada = projeto.getDescricaoDetalhada();
-        this.valorCombinado = projeto.getValorCombinado();
+        if(projeto.getTipoProjeto() == TipoProjeto.OFERTA_DE_SERVICO) {
+            this.nomeContratante = projeto.oferta.getNomeContratante();
+            this.cpfCnpjContratante = projeto.oferta.getCpfCnpjContratante();
+            this.enderecoContratante = projeto.oferta.getEnderecoContratante();
+            this.nomeProfissional = projeto.oferta.getNomeProfissional();
+            this.cpfCnpjProfissional = projeto.oferta.getCpfCnpjProfissional();
+            this.enderecoProfissional = projeto.oferta.getEnderecoProfissional();
+            this.descricaoDetalhada = projeto.oferta.getDescricaoDetalhada();
+            this.valorCombinado = projeto.oferta.getValorCombinado();
+            this.dataInicio = projeto.oferta.getDataInicio();
+            this.dataFim = projeto.oferta.getDataFim();
+        }
+        else if(projeto.getTipoProjeto() == TipoProjeto.DEMANDA_DE_SERVICO) {
+            this.nomeContratante = projeto.demanda.getNomeContratante();
+            this.cpfCnpjContratante = projeto.demanda.getCpfCnpjContratante();
+            this.enderecoContratante = projeto.demanda.getEnderecoContratante();
+            this.nomeProfissional = projeto.demanda.getNomeProfissional();
+            this.cpfCnpjProfissional = projeto.demanda.getCpfCnpjProfissional();
+            this.enderecoProfissional = projeto.demanda.getEnderecoProfissional();
+            this.descricaoDetalhada = projeto.demanda.getDescricaoDetalhada();
+            this.valorCombinado = projeto.demanda.getValorCombinado();
+            this.dataInicio = projeto.demanda.getDataInicio();
+            this.dataFim = projeto.demanda.getDataFim();
+        }
+        
     }
 
     //gets para acessar as informações do contrato
